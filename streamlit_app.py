@@ -1,8 +1,9 @@
 import streamlit as st
 
 st.title("🎈Thitkhar App")
-st.write("Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/).")
-
+st.write(
+    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
+)
 import streamlit as st
 from PIL import Image
 import io
@@ -66,7 +67,44 @@ def predict_face_identity(face_region, model_1, model_2):
     pred_1 = np.argmax(model_1.predict(face), axis=1)
     pred_2 = np.argmax(model_2.predict(face), axis=1)
 
-    return f"Model 1 predicts: Class {pred_1[0]}", f"Model 2 predicts: Class {pred_2[0]}"
+    # Get label from class
+    if pred_1[0] == "Class 0":
+        pred_1_label = "Kaung Zaw Hein"
+    
+    if pred_1[0] == "Class 1":
+        predict_1_label = "Khant Nay Linn Tun"
+
+    if pred_1[0] == "Class 2":
+        pred_1_label = "Min Thiha Kyaw"
+
+    if pred_1[0] == "Class 3":
+        pred_1_label = "Nay Phone Htoo"
+    
+    if pred_1[0] == "Class 4":
+        pred_1_label = "Pyae Phyo Han"
+
+    if pred_1[0] == "Class 5":
+        pred_1_label = "Win Htet Oo"
+
+    if pred_2[0] == "Class 0":
+        pred_2_label = "Kaung Zaw Hein"
+    
+    if pred_2[0] == "Class 1":
+        pred_2_label = "Khant Nay Linn Tun"
+
+    if pred_2[0] == "Class 2":
+        pred_2_label = "Min Thiha Kyaw"
+
+    if pred_2[0] == "Class 3":
+        pred_2_label = "Nay Phone Htoo"
+    
+    if pred_2[0] == "Class 4":
+        pred_2_label = "Pyae Phyo Han"
+
+    if pred_2[0] == "Class 5":
+        pred_2_label = "Win Htet Oo"
+
+    return f"Model 1 (GoogleNet) predicts: Class {pred_1_label}", f"Model 2 (VGG_16) predicts: Class {pred_2_label}"
 
 if option == "Browse Image":
     # Upload image from local system
